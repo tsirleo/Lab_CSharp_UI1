@@ -108,15 +108,15 @@ namespace ClassLibrary
             switch (gridParam.funcType)
             {
                 case VMf.vmdSin:
-                    return $"GridInfo: nodeNum = {gridParam.length}\t  segment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\t" +
+                    return $"GridInfo:\n\tnodeNum = {gridParam.length}\n\tsegment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\n\t" +
                            $"step = {gridParam.step}\n\tsinMaxDiffMod = {sinMaxDiffMod}\n\tsinArgMaxDiff = {sinArgMaxDiff}\n\t" +
                            $"sinValMaxDiff_HA = {sinValMaxDiff_HA}\n\tsinValMaxDiff_LA = {sinValMaxDiff_LA}\n\tsinValMaxDiff_EP = {sinValMaxDiff_EP}\n";
                 case VMf.vmdCos:
-                    return $"GridInfo: nodeNum = {gridParam.length}\t  segment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\t" +
+                    return $"GridInfo:\n\tnodeNum = {gridParam.length}\n\tsegment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\n\t" +
                            $"step = {gridParam.step}\n\tcosMaxDiffMod = {cosMaxDiffMod}\n\tcosArgMaxDiff = {cosArgMaxDiff}\n\t" +
                            $"cosValMaxDiff_HA = {cosValMaxDiff_HA}\n\tcosValMaxDiff_LA = {cosValMaxDiff_LA}\n\tcosValMaxDiff_EP = {cosValMaxDiff_EP}\n";
                 case VMf.vmdSinCos:
-                    return $"GridInfo: nodeNum = {gridParam.length}\t  segment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\t" +
+                    return $"GridInfo:\n\tnodeNum = {gridParam.length}\n\tsegment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\n\t" +
                            $"step = {gridParam.step}\n\tscMaxDiffMod = {scMaxDiffMod}\n\tscArgMaxDiff = {scArgMaxDiff}\n\t" +
                            $"scValMaxDiff_HA = {scValMaxDiff_HA}\n\tscValMaxDiff_LA = {scValMaxDiff_LA}\n\tscValMaxDiff_EP = {scValMaxDiff_EP}\n";
             }
