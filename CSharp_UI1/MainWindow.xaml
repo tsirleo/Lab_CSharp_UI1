@@ -42,8 +42,8 @@
         <Border BorderThickness="1" BorderBrush="Black" Margin="0,69,0,0" Width="210" HorizontalAlignment ="Left" VerticalAlignment="Top" Background="#FFD4FFFA" Height="294">
             <TextBlock TextWrapping="Wrap" Margin="0,0,0,0" VerticalAlignment="Top" Width="209" Height="30" FontSize="16" Background="#FFFFD6A9" FontWeight="Normal" FontStyle="Normal" TextAlignment="Center" Text="Окно ввода данных"/>
         </Border>
-        <ComboBox Name="funcType" Width="209" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Margin="0,124,0,0" SelectionChanged="funcType_SelectionChanged">
-            <ComboBoxItem IsSelected="True">vmdSin</ComboBoxItem>
+        <ComboBox Name="funcType" Width="209" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Margin="0,124,0,0" SelectionChanged="FuncType_OnSelectionChanged">
+            <ComboBoxItem>vmdSin</ComboBoxItem>
             <ComboBoxItem>vmdCos</ComboBoxItem>
             <ComboBoxItem>vmdSinCos</ComboBoxItem>
         </ComboBox>

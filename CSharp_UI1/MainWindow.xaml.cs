@@ -26,7 +26,7 @@ namespace CSharp_UI1
         public int ndNum = 1;
         public double sgstart = 0.0;
         public double sgend = 0.0;
-        public VMf fctype = VMf.vmdSin;
+        public VMf fctype;
 
         public MainWindow()
         {
@@ -193,7 +193,7 @@ namespace CSharp_UI1
         {
             if (benchmark != null && ndNum != 1 && sgstart != 0.0 && sgend != 0.0)
             {
-               // System.Windows.MessageBox.Show($"{ndNum}    {sgstart}   {sgend} {fctype}", "values", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Windows.MessageBox.Show($"{fctype}");
                 benchmark.AddVMTime(new VMGrid(ndNum, sgstart, sgend, fctype));
                 benchmark.isChanged = true;
                 infoblock.Text = DateTime.Now + "\n" + "New element VMtime is successfully added to collection!";
@@ -305,9 +305,11 @@ namespace CSharp_UI1
             }
         }
 
-        private void funcType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FuncType_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (funcType.Text)
+            ComboBox comboBox = (ComboBox)sender;
+            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
+            switch (selectedItem.Content.ToString())
             {
                 case "vmdSin":
                     fctype = VMf.vmdSin;
@@ -335,7 +337,14 @@ namespace CSharp_UI1
 
         private void VMAListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            VMATextBlock.Text = VMAListBox.SelectedItem.ToString();
+            try
+            {
+                VMATextBlock.Text = VMAListBox.SelectedItem.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Element is empty");
+            }
         }
     }
 }
