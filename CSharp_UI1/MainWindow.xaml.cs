@@ -197,7 +197,7 @@ namespace CSharp_UI1
                 benchmark.AddVMTime(new VMGrid(ndNum, sgstart, sgend, fctype));
                 benchmark.isChanged = true;
                 infoblock.Text = DateTime.Now + "\n" + "New element VMtime is successfully added to collection!";
-                minRelation.Text = $"\tminAll_EP_to_HA = {benchmark.bchmark.minAll_EP_to_HA}\n\tminAll_LA_to_HA = {benchmark.bchmark.minAll_LA_to_HA}";
+                minRelation.Text = $"\n\tminAll_EP_to_HA = {benchmark.bchmark.minAll_EP_to_HA}\n\tminAll_LA_to_HA = {benchmark.bchmark.minAll_LA_to_HA}";
             }
             else
             {
