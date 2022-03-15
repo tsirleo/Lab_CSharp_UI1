@@ -156,15 +156,15 @@ namespace ClassLibrary
             switch (gridParam.funcType)
             {
                 case VMf.vmdSin:
-                    return $"VMTime: GridInfo: nodeNum = {gridParam.length}\t segment = [{gridParam.segBounds[0]}, {gridParam.segBounds[1]}]\t" +
+                    return $"GridInfo: nodeNum = {gridParam.length}\t  segment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\t" +
                            $"step = {gridParam.step}\n\tsinTime_HA = {sinTime_HA} seconds\n\tsinTime_LA = {sinTime_LA} seconds\n\t" +
                            $"sinTime_EP = {sinTime_EP} seconds\n\tLA_to_HA_ratio = {LA_to_HA}\n\tEP_to_HA_ratio = {EP_to_HA}\n";
                 case VMf.vmdCos:
-                    return $"VMTime: GridInfo: nodeNum = {gridParam.length}\t segment = [{gridParam.segBounds[0]}, {gridParam.segBounds[1]}]\t" +
+                    return $"GridInfo: nodeNum = {gridParam.length}\t  segment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\t" +
                            $"step = {gridParam.step}\n\tcosTime_HA = {cosTime_HA} seconds\n\tcosTime_LA = {cosTime_LA} seconds\n\t" +
                            $"cosTime_EP = {cosTime_EP} seconds\n\tLA_to_HA_ratio = {LA_to_HA}\n\tEP_to_HA_ratio = {EP_to_HA}\n";
                 case VMf.vmdSinCos:
-                    return $"VMTime: GridInfo: nodeNum = {gridParam.length}\t segment = [{gridParam.segBounds[0]}, {gridParam.segBounds[1]}]\t" +
+                    return $"GridInfo: nodeNum = {gridParam.length}\t  segment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\t" +
                            $"step = {gridParam.step}\n\tsinCosTime_HA = {sinCosTime_HA} seconds\n\tsinCosTime_LA = {sinCosTime_LA} seconds\n\t" +
                            $"sinCosTime_EP = {sinCosTime_EP} seconds\n\tLA_to_HA_ratio = {LA_to_HA}\n\tEP_to_HA_ratio = {EP_to_HA}\n";
             }

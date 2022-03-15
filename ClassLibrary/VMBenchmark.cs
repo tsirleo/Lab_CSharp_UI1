@@ -11,8 +11,8 @@ namespace ClassLibrary
     [Serializable]
     public class VMBenchmark
     {
-        ObservableCollection<VMTime> timeTestRes { get; set; }
-        ObservableCollection<VMAccuracy> accComparRes { get; set; }
+        public ObservableCollection<VMTime> timeTestRes { get; set; }
+        public ObservableCollection<VMAccuracy> accComparRes { get; set; }
 
         public VMBenchmark()
         {

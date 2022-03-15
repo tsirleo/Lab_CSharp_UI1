@@ -108,17 +108,17 @@ namespace ClassLibrary
             switch (gridParam.funcType)
             {
                 case VMf.vmdSin:
-                    return $"VMAccuracy: GridInfo: nodeNum = {gridParam.length}\t segment = [{gridParam.segBounds[0]}, {gridParam.segBounds[1]}]\t" +
-                           $"step = {gridParam.step}\n\tsinMaxDiffMod = {sinMaxDiffMod}\tsinArgMaxDiff = {sinArgMaxDiff}\t" +
-                           $"sinValMaxDiff_HA = {sinValMaxDiff_HA}\tsinValMaxDiff_LA = {sinValMaxDiff_LA}\n\tsinValMaxDiff_EP = {sinValMaxDiff_EP}\n";
+                    return $"GridInfo: nodeNum = {gridParam.length}\t  segment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\t" +
+                           $"step = {gridParam.step}\n\tsinMaxDiffMod = {sinMaxDiffMod}\n\tsinArgMaxDiff = {sinArgMaxDiff}\n\t" +
+                           $"sinValMaxDiff_HA = {sinValMaxDiff_HA}\n\tsinValMaxDiff_LA = {sinValMaxDiff_LA}\n\tsinValMaxDiff_EP = {sinValMaxDiff_EP}\n";
                 case VMf.vmdCos:
-                    return $"VMAccuracy: GridInfo: nodeNum = {gridParam.length}\t segment = [{gridParam.segBounds[0]}, {gridParam.segBounds[1]}]\t" +
-                           $"step = {gridParam.step}\n\tcosMaxDiffMod = {cosMaxDiffMod}\tcosArgMaxDiff = {cosArgMaxDiff}\t" +
-                           $"cosValMaxDiff_HA = {cosValMaxDiff_HA}\tcosValMaxDiff_LA = {cosValMaxDiff_LA}\n\tcosValMaxDiff_EP = {cosValMaxDiff_EP}\n";
+                    return $"GridInfo: nodeNum = {gridParam.length}\t  segment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\t" +
+                           $"step = {gridParam.step}\n\tcosMaxDiffMod = {cosMaxDiffMod}\n\tcosArgMaxDiff = {cosArgMaxDiff}\n\t" +
+                           $"cosValMaxDiff_HA = {cosValMaxDiff_HA}\n\tcosValMaxDiff_LA = {cosValMaxDiff_LA}\n\tcosValMaxDiff_EP = {cosValMaxDiff_EP}\n";
                 case VMf.vmdSinCos:
-                    return $"VMAccuracy: GridInfo: nodeNum = {gridParam.length}\t segment = [{gridParam.segBounds[0]}, {gridParam.segBounds[1]}]\t" +
-                           $"step = {gridParam.step}\n\tscMaxDiffMod = {scMaxDiffMod}\tscArgMaxDiff = {scArgMaxDiff}\t" +
-                           $"scValMaxDiff_HA = {scValMaxDiff_HA}\tscValMaxDiff_LA = {scValMaxDiff_LA}\n\tscValMaxDiff_EP = {scValMaxDiff_EP}\n";
+                    return $"GridInfo: nodeNum = {gridParam.length}\t  segment = [{gridParam.segBounds[0]}; {gridParam.segBounds[1]}]\t" +
+                           $"step = {gridParam.step}\n\tscMaxDiffMod = {scMaxDiffMod}\n\tscArgMaxDiff = {scArgMaxDiff}\n\t" +
+                           $"scValMaxDiff_HA = {scValMaxDiff_HA}\n\tscValMaxDiff_LA = {scValMaxDiff_LA}\n\tscValMaxDiff_EP = {scValMaxDiff_EP}\n";
             }
 
             return "";

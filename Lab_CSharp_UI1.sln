@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPP_DLL", "CPP_DLL\CPP_DLL.vcxproj", "{03C1C16F-8805-4085-AADA-3676A30146B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{78697FD2-6703-4BEA-93F1-B9F0D86C0F34}"
+	ProjectSection(ProjectDependencies) = postProject
+		{03C1C16F-8805-4085-AADA-3676A30146B3} = {03C1C16F-8805-4085-AADA-3676A30146B3}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp_UI1", "CSharp_UI1\CSharp_UI1.csproj", "{2A492E59-26B8-4E7C-97F0-028DC0026B45}"
 EndProject
