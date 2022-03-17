@@ -193,7 +193,6 @@ namespace CSharp_UI1
         {
             if (benchmark != null && ndNum != 1 && sgstart != 0.0 && sgend != 0.0)
             {
-                System.Windows.MessageBox.Show($"{fctype}");
                 benchmark.AddVMTime(new VMGrid(ndNum, sgstart, sgend, fctype));
                 benchmark.isChanged = true;
                 infoblock.Text = DateTime.Now + "\n" + "New element VMtime is successfully added to collection!";

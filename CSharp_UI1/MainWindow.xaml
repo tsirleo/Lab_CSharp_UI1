@@ -6,17 +6,24 @@
         xmlns:local="clr-namespace:CSharp_UI1"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1400"
-        Closing="MainWindow_OnClosing">
+        Closing="MainWindow_OnClosing" ResizeMode="NoResize">
     <Window.Resources>
         <DataTemplate x:Key="key_Template">
-            <Grid>
+            <Border BorderThickness="1" BorderBrush="#FF00EDE3" CornerRadius="2" Width="535">
                 <StackPanel Orientation="Horizontal" >
-                    <TextBlock Text="{Binding fctype }" Margin="10,10,5,10" Width="170"/>
-                    <TextBlock Text="{Binding ndNum}" Margin="10,10,5,10" Width="50"/>
-                    <TextBlock Text="{Binding sgstart}" Margin="10,10,5,10" Width="50"/>
-                    <TextBlock Text="{Binding sgend}" Margin="10,10,5,10" Width="50"/>
+                    <TextBlock Text="{Binding gridParam.funcType }" Height ="30" Width="100" FontSize="16" TextAlignment="Center"/>
+                    <TextBlock Text="{Binding gridParam.length}" Height ="30" Width="100" FontSize="16" TextAlignment="Center"/>
+                    <TextBlock Height ="30" Width="120" FontSize="16" TextAlignment="Center">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="[{0}; {1}]">
+                                <Binding Path=" gridParam.segBounds[0]"/>
+                                <Binding Path=" gridParam.segBounds[1]"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Text="{Binding gridParam.step}" Height ="30" Width="220" FontSize="16" TextAlignment="Center"/>
                 </StackPanel>
-            </Grid>
+            </Border>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -29,19 +36,25 @@
             <ColumnDefinition Width="579*"/>
         </Grid.ColumnDefinitions>
         <Menu HorizontalAlignment ="Left" VerticalAlignment ="Top" Margin="0,0,0,0" Width="210" Height="40">
-            <MenuItem Background="#FF8DEFDA" Header="File" Height="40" Width="105" FontSize="16">
+            <MenuItem Background="#FF8DEFDA" Header="File" Height="40" Width="105" FontSize="16" BorderBrush="#FF020101">
                 <MenuItem Background="#FFFDB0E5" Header="New" Height="40" Click="NewMenuItem_OnClick"/>
                 <MenuItem Background="#FFFDB0E5" Header="Open" Height="40" Click="OpenMenuItem_OnClick"/>
                 <MenuItem Background="#FFFDB0E5" Header="Save" Height="40" Click="SaveMenuItem_OnClick"/>
             </MenuItem>
-            <MenuItem Header="Edit" Background="#FF8DEFDA" Height="40" Width="105" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <MenuItem Header="Edit" Background="#FF8DEFDA" Height="40" Width="105" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#FF100A0A">
                 <MenuItem Background="#FFFDA3E9" Header="Add VMTime" Height="40" Click="AddVMTMenuItem_OnClick"/>
                 <MenuItem Background="#FFFDA3E9" Header="Add VMAccuracy" Height="40" Click="AddVMAMenuItem_OnClick"/>
             </MenuItem>
         </Menu>
         <Border BorderThickness="1" BorderBrush="Black" Margin="0,69,0,0" Width="210" HorizontalAlignment ="Left" VerticalAlignment="Top" Background="#FFD4FFFA" Height="294">
+            <Border.ToolTip>
+                <ToolTip>
+                    Set the end of segment first, and then the beginning
+                </ToolTip>
+            </Border.ToolTip>
             <TextBlock TextWrapping="Wrap" Margin="0,0,0,0" VerticalAlignment="Top" Width="209" Height="30" FontSize="16" Background="#FFFFD6A9" FontWeight="Normal" FontStyle="Normal" TextAlignment="Center" Text="Окно ввода данных"/>
         </Border>
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="1" Margin="0,100,0,0" VerticalAlignment="Top" Width="209"/>
         <ComboBox Name="funcType" Width="209" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Margin="0,124,0,0" SelectionChanged="FuncType_OnSelectionChanged">
             <ComboBoxItem>vmdSin</ComboBoxItem>
             <ComboBoxItem>vmdCos</ComboBoxItem>
@@ -76,40 +89,64 @@
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="150" Margin="0,50,0,0" VerticalAlignment="Top" Width="210" Background="#FFD4FFFA" Grid.Row="1"/>
         <TextBlock HorizontalAlignment="Left" Margin="0,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="45" Width="209" Background="#FFFFD6A9" TextAlignment="Center" Text="Информационное сообщение" FontSize="16" Grid.Row="1"/>
         <TextBlock Name="infoblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="102" Width="209" FontSize="14" Grid.Row="1" Margin="0,96,0,0"/>
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="1" Margin="0,95,0,0" VerticalAlignment="Top" Width="209" Grid.Row="1" Grid.Column="0"/>
         <Grid Name="VMTgrid" Margin="1,9,540,11" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="47"/>
-                <ColumnDefinition Width="254*"/>
-                <ColumnDefinition Width="301*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="562*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="114*"/>
-                <RowDefinition Height="119*"/>
-                <RowDefinition Height="0*"/>
+                <RowDefinition Height="47*"/>
+                <RowDefinition Height="346*"/>
             </Grid.RowDefinitions>
-            <ListBox Name="VMTListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource key_Template}" IsSynchronizedWithCurrentItem="true" SelectionChanged="VMTListBox_OnSelectionChanged"  AutomationProperties.IsColumnHeader="True" Grid.RowSpan="2" Margin="0,46,10,10" Grid.Column="1" Grid.ColumnSpan="2"  />
+            <ListBox Name="VMTListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource key_Template}" IsSynchronizedWithCurrentItem="true" SelectionChanged="VMTListBox_OnSelectionChanged"  AutomationProperties.IsColumnHeader="True" Grid.Row="1"  Margin="0,0,0,25" Grid.Column="1" BorderBrush="#FF0D0D0F" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
+            <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left"  Height="37" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="107" Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
+                <Label Content="Function type" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="37" Margin="107,0,0,0" VerticalAlignment="Bottom" Width="100" Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
+                <Label Content="Node number" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="37" Margin="207,0,0,0" VerticalAlignment="Bottom" Width="120"  Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
+                <Label Content="Segment info" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="37" Margin="327,0,0,0" VerticalAlignment="Bottom" Width="239" Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
+                <Label Content="Step of calculation be segment" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
         </Grid>
         <Grid Name="VMAgrid" Margin="1,10,540,10" Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="47"/>
-                <ColumnDefinition Width="254*"/>
-                <ColumnDefinition Width="301*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="562*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="114*"/>
-                <RowDefinition Height="119*"/>
-                <RowDefinition Height="0*"/>
+                <RowDefinition Height="47*"/>
+                <RowDefinition Height="346*"/>
             </Grid.RowDefinitions>
-            <ListBox Name="VMAListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource key_Template}" IsSynchronizedWithCurrentItem="true" SelectionChanged="VMAListBox_OnSelectionChanged"  AutomationProperties.IsColumnHeader="True" Grid.RowSpan="2" Margin="0,46,10,10" Grid.Column="1" Grid.ColumnSpan="2"  />
+            <ListBox Name="VMAListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource key_Template}" IsSynchronizedWithCurrentItem="true" SelectionChanged="VMAListBox_OnSelectionChanged"  AutomationProperties.IsColumnHeader="True" Margin="0,0,0,10" Grid.Column="1"  BorderBrush="#FF0B0B0C" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
+            <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left"  Height="37" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="107" Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
+                <Label Content="Function type" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="37" Margin="107,0,0,0" VerticalAlignment="Bottom" Width="100" Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
+                <Label Content="Node number" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="37" Margin="207,0,0,0" VerticalAlignment="Bottom" Width="120"  Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
+                <Label Content="Segment info" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="37" Margin="327,0,0,0" VerticalAlignment="Bottom" Width="239" Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
+                <Label Content="Step of calculation be segment" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
         </Grid>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="274" Margin="0,30,0,0" VerticalAlignment="Top" Width="477" Background="#FFD4FFFA" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="475" Background="#FFFFD6A9" TextAlignment="Center" Text="Подробная информация об экземпляре VMTime" FontSize="16" Grid.Column="1"/>
         <TextBlock Name="VMTTextBlock" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Height="243" Width="475" FontSize="14" Margin="0,61,0,0" Grid.Column="1"/>
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="1" Margin="0,61,0,0" VerticalAlignment="Top" Width="475" Grid.Row="0" Grid.Column="1"/>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="274" Margin="0,70,0,0" VerticalAlignment="Top" Width="477" Background="#FFD4FFFA" Grid.Column="1" Grid.Row="1"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="475" Background="#FFFFD6A9" TextAlignment="Center" Text="Подробная информация об экземпляре VMAcccuracy" FontSize="16" Grid.Column="1" Grid.Row="1"/>
         <TextBlock Name="VMATextBlock" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Height="243" Width="475" FontSize="14" Margin="0,100,0,0" Grid.Column="1" Grid.Row="1"/>
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="1" Margin="0,100,0,0" VerticalAlignment="Top" Width="475" Grid.Row="1" Grid.Column="1"/>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="112" Margin="0,340,0,0" VerticalAlignment="Top" Width="477" Background="#FFD4FFFA" Grid.Column="1" Grid.RowSpan="2"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,341,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="475" Background="#FFFFD6A9" TextAlignment="Center" Text="Минимальные значения коэффициентов отношения" FontSize="16" Grid.Column="1"/>
         <TextBlock Name="minRelation" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Width="475" FontSize="14" Margin="0,372,0,0" Grid.Column="1" Grid.RowSpan="2"/>
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="1" Margin="0,371,0,0" VerticalAlignment="Top" Width="475" Grid.Row="0" Grid.Column="1"/>
     </Grid>
 </Window>
