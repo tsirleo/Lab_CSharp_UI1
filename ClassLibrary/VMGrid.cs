@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +9,10 @@ namespace ClassLibrary
 {
     public class VMGrid
     {
-        public int length { get; private set; }
-        public double[] segBounds { get; private set; }
-        public double step { get; private set; }
-        public VMf funcType { get; private set; }
+        public int length { get; set; }
+        public double[] segBounds { get; set; } = new double[2] {0.0, 0.0};
+        public double step { get; set; }
+        public VMf funcType { get; set; }
 
         public VMGrid(int len, double head, double end, VMf ft)
         {

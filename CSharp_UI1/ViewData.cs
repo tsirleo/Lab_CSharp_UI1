@@ -16,6 +16,7 @@ namespace CSharp_UI1
     public class ViewData
     {
         public VMBenchmark bchmark;
+        public VMGrid Grid { get; set; } = new VMGrid(0, 0.0, 0.0, VMf.vmdCos);
         public bool isChanged { get; set; }
 
         public ViewData()

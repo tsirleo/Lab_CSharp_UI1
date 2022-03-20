@@ -23,16 +23,10 @@ namespace CSharp_UI1
     public partial class MainWindow : Window
     {
         public ViewData benchmark = new ViewData();
-        public int ndNum = 0;
-        public double sgstart = 0.0;
-        public double sgend = 0.0;
-        public VMf fctype;
 
         public MainWindow()
         {
             InitializeComponent();
-            VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
-            VMAgrid.DataContext = benchmark.bchmark.accComparRes;
         }
 
         private void NewMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -194,12 +188,26 @@ namespace CSharp_UI1
 
         private void AddVMTMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            if (benchmark != null && ndNum != 0)
+            if (benchmark != null && benchmark.Grid.length != 0)
             {
-                benchmark.AddVMTime(new VMGrid(ndNum, sgstart, sgend, fctype));
-                benchmark.isChanged = true;
-                infoblock.Text = DateTime.Now + "\n" + "New element VMtime is successfully added to collection!";
-                minRelation.Text = $"\n\tminAll_EP_to_HA = {benchmark.bchmark.minAll_EP_to_HA}\n\tminAll_LA_to_HA = {benchmark.bchmark.minAll_LA_to_HA}";
+                if (benchmark.Grid.length <= 0) {
+                    System.Windows.MessageBox.Show("Number of nodes must be greater than zero", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (benchmark.Grid.segBounds[0] > benchmark.Grid.segBounds[1])
+                {
+                    System.Windows.MessageBox.Show("End of segment must be greater than beginning", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (benchmark.Grid.length == 1 && (benchmark.Grid.segBounds[0] != benchmark.Grid.segBounds[1]))
+                {
+                    System.Windows.MessageBox.Show("When number of nodes is equal to one, the boundaries of the segment must match", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    benchmark.AddVMTime(new VMGrid(benchmark.Grid.length, benchmark.Grid.segBounds[0], benchmark.Grid.segBounds[1], benchmark.Grid.funcType));
+                    benchmark.isChanged = true;
+                    infoblock.Text = DateTime.Now + "\n" + "New element VMtime is successfully added to collection!";
+                    //MinRelationBlock.Text = $"\n\tminAll_EP_to_HA = {benchmark.bchmark.minAll_EP_to_HA}\n\tminAll_LA_to_HA = {benchmark.bchmark.minAll_LA_to_HA}";
+                }
             }
             else
             {
@@ -209,11 +217,26 @@ namespace CSharp_UI1
 
         private void AddVMAMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            if (benchmark != null && ndNum != 0)
+            if (benchmark != null && benchmark.Grid.length != 0)
             {
-                benchmark.AddVMAccuracy(new VMGrid(ndNum, sgstart, sgend, fctype));
-                benchmark.isChanged = true;
-                infoblock.Text = DateTime.Now + "\n" + "New element VMAccuracy is successfully added to collection!";
+                if (benchmark.Grid.length <= 0)
+                {
+                    System.Windows.MessageBox.Show("Number of nodes must be greater than zero", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (benchmark.Grid.segBounds[0] > benchmark.Grid.segBounds[1])
+                {
+                    System.Windows.MessageBox.Show("End of segment must be greater than beginning", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else if (benchmark.Grid.length == 1 && (benchmark.Grid.segBounds[0] != benchmark.Grid.segBounds[1]))
+                {
+                    System.Windows.MessageBox.Show("When number of nodes is equal to one, the boundaries of the segment must match", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    benchmark.AddVMAccuracy(new VMGrid(benchmark.Grid.length, benchmark.Grid.segBounds[0], benchmark.Grid.segBounds[1], benchmark.Grid.funcType));
+                    benchmark.isChanged = true;
+                    infoblock.Text = DateTime.Now + "\n" + "New element VMAccuracy is successfully added to collection!";
+                }
             }
             else
             {
@@ -248,80 +271,16 @@ namespace CSharp_UI1
             }
         }
 
-        private void nodeNum_TextChanged(object sender, TextChangedEventArgs e)
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                ndNum = int.Parse(nodeNum.Text);
-                if (ndNum <= 0)
-                {
-                    System.Windows.MessageBox.Show($"The number of nodes must be greater than zero!", "Error", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                if (nodeNum.Text != "")
-                {
-                    System.Windows.MessageBox.Show($"Node number must be integer!", "Error", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
-        }
-
-        private void segstart_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                sgstart = double.Parse(segstart.Text);
-            }
-            catch (Exception ex)
-            {
-                if (segstart.Text != "")
-                {
-                    System.Windows.MessageBox.Show($"Segment params must be double!", "Error", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
-        }
-
-        private void segend_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                sgend = double.Parse(segend.Text);
-                if (sgstart >= sgend)
-                {
-                    System.Windows.MessageBox.Show($"Segment end value must be greater than begin value!", "Error", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                if (segend.Text != "")
-                {
-                    System.Windows.MessageBox.Show($"Segment params must be double!", "Error", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
-        }
-
-        private void FuncType_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ComboBox comboBox = (ComboBox)sender;
-            ComboBoxItem selectedItem = (ComboBoxItem)comboBox.SelectedItem;
-            switch (selectedItem.Content.ToString())
-            {
-                case "vmdSin":
-                    fctype = VMf.vmdSin;
-                    break;
-                case "vmdCos":
-                    fctype = VMf.vmdCos;
-                    break;
-                case "vmdSinCos":
-                    fctype = VMf.vmdSinCos;
-                    break;
-            }
+            FuncTypeBox.ItemsSource = Enum.GetValues(typeof(VMf));
+            VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
+            VMAgrid.DataContext = benchmark.bchmark.accComparRes;
+            SegendBox.DataContext = benchmark.Grid;
+            SegstartBox.DataContext = benchmark.Grid;
+            FuncTypeBox.DataContext = benchmark.Grid;
+            NodeNumBox.DataContext = benchmark.Grid;
+            MinRelationBlock.DataContext = benchmark.bchmark;
         }
     }
 }
