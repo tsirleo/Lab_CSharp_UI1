@@ -122,18 +122,27 @@ namespace ClassLibrary
         {
             get
             {
-                if (timeTestRes != null)
+                try
                 {
-                    double min = timeTestRes[0].EP_to_HA;
-                    foreach (var vt in timeTestRes)
+                    if (timeTestRes != null)
                     {
-                        if (min > vt.EP_to_HA)
+                        double min = timeTestRes[0].EP_to_HA;
+                        foreach (var vt in timeTestRes)
                         {
-                            min = vt.EP_to_HA;
+                            if (min > vt.EP_to_HA)
+                            {
+                                min = vt.EP_to_HA;
+                            }
                         }
+
+                        return min;
                     }
 
-                    return min;
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("There is no time test results");
                 }
 
                 return 0;
@@ -144,18 +153,27 @@ namespace ClassLibrary
         {
             get
             {
-                if (timeTestRes != null)
+                try
                 {
-                    double min = timeTestRes[0].LA_to_HA;
-                    foreach (var vt in timeTestRes)
+                    if (timeTestRes != null)
                     {
-                        if (min > vt.LA_to_HA)
+                        double min = timeTestRes[0].LA_to_HA;
+                        foreach (var vt in timeTestRes)
                         {
-                            min = vt.LA_to_HA;
+                            if (min > vt.LA_to_HA)
+                            {
+                                min = vt.LA_to_HA;
+                            }
                         }
+
+                        return min;
                     }
 
-                    return min;
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("There is no time test results");
                 }
 
                 return 0;

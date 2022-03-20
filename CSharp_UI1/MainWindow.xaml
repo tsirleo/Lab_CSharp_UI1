@@ -99,7 +99,7 @@
                 <RowDefinition Height="47*"/>
                 <RowDefinition Height="346*"/>
             </Grid.RowDefinitions>
-            <ListBox Name="VMTListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource key_Template}" IsSynchronizedWithCurrentItem="true" SelectionChanged="VMTListBox_OnSelectionChanged"  AutomationProperties.IsColumnHeader="True" Grid.Row="1"  Margin="0,0,0,25" Grid.Column="1" BorderBrush="#FF0D0D0F" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
+            <ListBox Name="VMTListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource key_Template}" Grid.Row="1"  Margin="0,0,0,25" Grid.Column="1" BorderBrush="#FF0D0D0F" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
             <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left"  Height="37" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="107" Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
                 <Label Content="Function type" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
@@ -122,7 +122,7 @@
                 <RowDefinition Height="47*"/>
                 <RowDefinition Height="346*"/>
             </Grid.RowDefinitions>
-            <ListBox Name="VMAListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource key_Template}" IsSynchronizedWithCurrentItem="true" SelectionChanged="VMAListBox_OnSelectionChanged"  AutomationProperties.IsColumnHeader="True" Margin="0,0,0,10" Grid.Column="1"  BorderBrush="#FF0B0B0C" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
+            <ListBox Name="VMAListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource key_Template}" Margin="0,0,0,10" Grid.Column="1"  BorderBrush="#FF0B0B0C" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Hidden" />
             <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left"  Height="37" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="107" Grid.Column="1" Grid.Row="0" Background="#FFFFD6A9">
                 <Label Content="Function type" Margin="0,0,0,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
@@ -138,11 +138,11 @@
         </Grid>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="274" Margin="0,30,0,0" VerticalAlignment="Top" Width="477" Background="#FFD4FFFA" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="475" Background="#FFFFD6A9" TextAlignment="Center" Text="Подробная информация об экземпляре VMTime" FontSize="16" Grid.Column="1"/>
-        <TextBlock Name="VMTTextBlock" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Height="243" Width="475" FontSize="14" Margin="0,61,0,0" Grid.Column="1"/>
+        <TextBlock Name="VMTTextBlock" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Height="243" Width="475" FontSize="14" Margin="0,61,0,0" Grid.Column="1" DataContext="{Binding ElementName=VMTListBox, Path=SelectedItem}" Text="{Binding}"/>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="1" Margin="0,61,0,0" VerticalAlignment="Top" Width="475" Grid.Row="0" Grid.Column="1"/>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="274" Margin="0,70,0,0" VerticalAlignment="Top" Width="477" Background="#FFD4FFFA" Grid.Column="1" Grid.Row="1"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="475" Background="#FFFFD6A9" TextAlignment="Center" Text="Подробная информация об экземпляре VMAcccuracy" FontSize="16" Grid.Column="1" Grid.Row="1"/>
-        <TextBlock Name="VMATextBlock" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Height="243" Width="475" FontSize="14" Margin="0,100,0,0" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock Name="VMATextBlock" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Height="243" Width="475" FontSize="14" Margin="0,100,0,0" Grid.Column="1" Grid.Row="1" DataContext="{Binding ElementName=VMAListBox, Path=SelectedItem}" Text="{Binding}"/>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="1" Margin="0,100,0,0" VerticalAlignment="Top" Width="475" Grid.Row="1" Grid.Column="1"/>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Right" Height="112" Margin="0,340,0,0" VerticalAlignment="Top" Width="477" Background="#FFD4FFFA" Grid.Column="1" Grid.RowSpan="2"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,341,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="475" Background="#FFFFD6A9" TextAlignment="Center" Text="Минимальные значения коэффициентов отношения" FontSize="16" Grid.Column="1"/>

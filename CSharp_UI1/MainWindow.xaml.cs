@@ -214,7 +214,6 @@ namespace CSharp_UI1
                 benchmark.AddVMAccuracy(new VMGrid(ndNum, sgstart, sgend, fctype));
                 benchmark.isChanged = true;
                 infoblock.Text = DateTime.Now + "\n" + "New element VMAccuracy is successfully added to collection!";
-                minRelation.Text = $"\n\tminAll_EP_to_HA = {benchmark.bchmark.minAll_EP_to_HA}\n\tminAll_LA_to_HA = {benchmark.bchmark.minAll_LA_to_HA}";
             }
             else
             {
@@ -322,30 +321,6 @@ namespace CSharp_UI1
                 case "vmdSinCos":
                     fctype = VMf.vmdSinCos;
                     break;
-            }
-        }
-
-        private void VMTListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                VMTTextBlock.Text = VMTListBox.SelectedItem.ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Element is empty");
-            }
-        }
-
-        private void VMAListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                VMATextBlock.Text = VMAListBox.SelectedItem.ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Element is empty");
             }
         }
     }
