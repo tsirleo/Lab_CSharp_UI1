@@ -56,9 +56,14 @@ namespace CSharp_UI1
                     }
                 }
                 benchmark = new ViewData();
-                infoblock.Text = DateTime.Now + "\n" + "New data is created!";
                 VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
                 VMAgrid.DataContext = benchmark.bchmark.accComparRes;
+                SegendBox.DataContext = benchmark.Grid;
+                SegstartBox.DataContext = benchmark.Grid;
+                FuncTypeBox.DataContext = benchmark.Grid;
+                NodeNumBox.DataContext = benchmark.Grid;
+                MinRelationBlock.DataContext = benchmark.bchmark;
+                infoblock.Text = DateTime.Now + "\n" + "New data is created!";
             }
             else
             {
@@ -66,6 +71,11 @@ namespace CSharp_UI1
                 infoblock.Text = DateTime.Now + "\n" + "New data is created!";
                 VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
                 VMAgrid.DataContext = benchmark.bchmark.accComparRes;
+                SegendBox.DataContext = benchmark.Grid;
+                SegstartBox.DataContext = benchmark.Grid;
+                FuncTypeBox.DataContext = benchmark.Grid;
+                NodeNumBox.DataContext = benchmark.Grid;
+                MinRelationBlock.DataContext = benchmark.bchmark;
             }
         }
 
@@ -111,6 +121,11 @@ namespace CSharp_UI1
                             infoblock.Text = DateTime.Now + "\n" + "Data is successfully loaded!";
                             VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
                             VMAgrid.DataContext = benchmark.bchmark.accComparRes;
+                            SegendBox.DataContext = benchmark.Grid;
+                            SegstartBox.DataContext = benchmark.Grid;
+                            FuncTypeBox.DataContext = benchmark.Grid;
+                            NodeNumBox.DataContext = benchmark.Grid;
+                            MinRelationBlock.DataContext = benchmark.bchmark;
                             benchmark.isChanged = false;
                         }
                     }
@@ -134,6 +149,11 @@ namespace CSharp_UI1
                             infoblock.Text = DateTime.Now + "\n" + "Data is successfully loaded!";
                             VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
                             VMAgrid.DataContext = benchmark.bchmark.accComparRes;
+                            SegendBox.DataContext = benchmark.Grid;
+                            SegstartBox.DataContext = benchmark.Grid;
+                            FuncTypeBox.DataContext = benchmark.Grid;
+                            NodeNumBox.DataContext = benchmark.Grid;
+                            MinRelationBlock.DataContext = benchmark.bchmark;
                             benchmark.isChanged = false;
                         }
                     }
@@ -158,6 +178,11 @@ namespace CSharp_UI1
                         infoblock.Text = DateTime.Now + "\n" + "Data is successfully loaded!";
                         VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
                         VMAgrid.DataContext = benchmark.bchmark.accComparRes;
+                        SegendBox.DataContext = benchmark.Grid;
+                        SegstartBox.DataContext = benchmark.Grid;
+                        FuncTypeBox.DataContext = benchmark.Grid;
+                        NodeNumBox.DataContext = benchmark.Grid;
+                        MinRelationBlock.DataContext = benchmark.bchmark;
                         benchmark.isChanged = false;
                     }
                 }
@@ -206,7 +231,6 @@ namespace CSharp_UI1
                     benchmark.AddVMTime(new VMGrid(benchmark.Grid.length, benchmark.Grid.segBounds[0], benchmark.Grid.segBounds[1], benchmark.Grid.funcType));
                     benchmark.isChanged = true;
                     infoblock.Text = DateTime.Now + "\n" + "New element VMtime is successfully added to collection!";
-                    //MinRelationBlock.Text = $"\n\tminAll_EP_to_HA = {benchmark.bchmark.minAll_EP_to_HA}\n\tminAll_LA_to_HA = {benchmark.bchmark.minAll_LA_to_HA}";
                 }
             }
             else

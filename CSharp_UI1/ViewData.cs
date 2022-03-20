@@ -9,20 +9,33 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Accessibility;
 using ClassLibrary;
 
 namespace CSharp_UI1
 {
-    public class ViewData
+    public class ViewData: INotifyPropertyChanged
     {
         public VMBenchmark bchmark;
-        public VMGrid Grid { get; set; } = new VMGrid(0, 0.0, 0.0, VMf.vmdCos);
+        public VMGrid Grid { get; set; } = new VMGrid(0, 0.0, 0.0, VMf.vmdSin);
         public bool isChanged { get; set; }
+        private double mEPHA;
+        private double mLAHA;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public ViewData()
         {
             bchmark = new VMBenchmark();
             isChanged = false;
+            bchmark.timeTestRes.CollectionChanged += TMChanged;
+        }
+
+        private void TMChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            mEPHA = bchmark.minAll_EP_to_HA;
+            mLAHA = bchmark.minAll_LA_to_HA;
+            bchmark.minAll_EP_to_HA = mEPHA;
+            bchmark.minAll_LA_to_HA = mLAHA;
         }
 
         public void AddVMTime(VMGrid grid)
@@ -196,7 +209,7 @@ namespace CSharp_UI1
                             break;
                     }
                 }
-
+                bchmark.timeTestRes.CollectionChanged += TMChanged;
                 for (int i = 0; i < acl; i++)
                 {
                     int length = Convert.ToInt32(sRdr.ReadLine());

@@ -142,8 +142,8 @@
         <TextBlock Name="MinRelationBlock" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Width="475" FontSize="14" Margin="0,372,0,0" Grid.Column="1" Grid.RowSpan="2">
             <TextBlock.Text>
                 <MultiBinding Converter="{StaticResource ConverterStr}">
-                    <Binding Path="minAll_EP_to_HA"/>
-                    <Binding Path=" minAll_LA_to_HA"/>
+                    <Binding Path="minAll_EP_to_HA" UpdateSourceTrigger="PropertyChanged"/>
+                    <Binding Path=" minAll_LA_to_HA" UpdateSourceTrigger="PropertyChanged"/>
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>

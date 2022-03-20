@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -8,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public class VMBenchmark
+    public class VMBenchmark: INotifyPropertyChanged
     {
         public ObservableCollection<VMTime> timeTestRes { get; set; }
         public ObservableCollection<VMAccuracy> accComparRes { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public VMBenchmark()
         {
@@ -147,6 +149,10 @@ namespace ClassLibrary
 
                 return 0;
             }
+            set
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("minAll_EP_to_HA"));
+            }
         }
 
         public double minAll_LA_to_HA
@@ -177,6 +183,10 @@ namespace ClassLibrary
                 }
 
                 return 0;
+            }
+            set
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("minAll_LA_to_HA"));
             }
         }
 
