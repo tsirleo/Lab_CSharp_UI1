@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    [Serializable]
     public class VMAccuracy
     {
         public VMGrid gridParam { get; private set; }
@@ -32,6 +31,35 @@ namespace ClassLibrary
         public VMAccuracy(VMGrid gp)
         {
             gridParam = new VMGrid(gp);
+        }
+
+        public VMAccuracy(VMGrid gp, double mdf, double amf, double vmf_HA, double vmf_LA, double vmf_EP)
+        {
+            gridParam = new VMGrid(gp);
+            switch (gridParam.funcType)
+            {
+                case VMf.vmdSin:
+                    sinMaxDiffMod = mdf;
+                    sinArgMaxDiff = amf;
+                    sinValMaxDiff_HA = vmf_HA;
+                    sinValMaxDiff_LA = vmf_LA;
+                    sinValMaxDiff_EP = vmf_EP;
+                    break;
+                case VMf.vmdCos:
+                    cosMaxDiffMod = mdf;
+                    cosArgMaxDiff = amf;
+                    cosValMaxDiff_HA = vmf_HA;
+                    cosValMaxDiff_LA = vmf_LA;
+                    cosValMaxDiff_EP = vmf_EP;
+                    break;
+                case VMf.vmdSinCos:
+                    scMaxDiffMod = mdf;
+                    scArgMaxDiff = amf;
+                    scValMaxDiff_HA = vmf_HA;
+                    scValMaxDiff_LA = vmf_LA;
+                    scValMaxDiff_EP = vmf_EP;
+                    break;
+            }
         }
 
         public void MaxDiffModule(double[] valsHA, double[] valsEP)

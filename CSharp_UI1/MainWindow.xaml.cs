@@ -23,7 +23,7 @@ namespace CSharp_UI1
     public partial class MainWindow : Window
     {
         public ViewData benchmark = new ViewData();
-        public int ndNum = 1;
+        public int ndNum = 0;
         public double sgstart = 0.0;
         public double sgend = 0.0;
         public VMf fctype;
@@ -117,6 +117,7 @@ namespace CSharp_UI1
                             infoblock.Text = DateTime.Now + "\n" + "Data is successfully loaded!";
                             VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
                             VMAgrid.DataContext = benchmark.bchmark.accComparRes;
+                            benchmark.isChanged = false;
                         }
                     }
                 }
@@ -139,6 +140,7 @@ namespace CSharp_UI1
                             infoblock.Text = DateTime.Now + "\n" + "Data is successfully loaded!";
                             VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
                             VMAgrid.DataContext = benchmark.bchmark.accComparRes;
+                            benchmark.isChanged = false;
                         }
                     }
                 }
@@ -162,6 +164,7 @@ namespace CSharp_UI1
                         infoblock.Text = DateTime.Now + "\n" + "Data is successfully loaded!";
                         VMTgrid.DataContext = benchmark.bchmark.timeTestRes;
                         VMAgrid.DataContext = benchmark.bchmark.accComparRes;
+                        benchmark.isChanged = false;
                     }
                 }
             }
@@ -191,7 +194,7 @@ namespace CSharp_UI1
 
         private void AddVMTMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            if (benchmark != null && ndNum != 1 && sgstart != 0.0 && sgend != 0.0)
+            if (benchmark != null && ndNum != 0)
             {
                 benchmark.AddVMTime(new VMGrid(ndNum, sgstart, sgend, fctype));
                 benchmark.isChanged = true;
@@ -206,7 +209,7 @@ namespace CSharp_UI1
 
         private void AddVMAMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            if (benchmark != null && ndNum != 1 && sgstart != 0.0 && sgend != 0.0)
+            if (benchmark != null && ndNum != 0)
             {
                 benchmark.AddVMAccuracy(new VMGrid(ndNum, sgstart, sgend, fctype));
                 benchmark.isChanged = true;

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    [Serializable]
     public class VMBenchmark
     {
         public ObservableCollection<VMTime> timeTestRes { get; set; }

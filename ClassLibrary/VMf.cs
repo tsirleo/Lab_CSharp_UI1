@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    [Serializable]
     public enum VMf
     {
         vmdSin,
