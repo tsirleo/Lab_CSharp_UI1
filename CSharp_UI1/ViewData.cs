@@ -40,19 +40,33 @@ namespace CSharp_UI1
 
         public void AddVMTime(VMGrid grid)
         {
-            if (bchmark != null)
+            try
             {
-                bchmark.AddVMTime(grid);
-                isChanged = true;
+                if (bchmark != null)
+                {
+                    bchmark.AddVMTime(grid);
+                    isChanged = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"An error occurred in function AddVMTime", "Error message", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         public void AddVMAccuracy(VMGrid grid)
         {
-            if (bchmark != null)
+            try
             {
-                bchmark.AddVMAccuracy(grid);
-                isChanged = true;
+                if (bchmark != null)
+                {
+                    bchmark.AddVMAccuracy(grid);
+                    isChanged = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"An error occurred in function AddVMAccuracy", "Error message", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

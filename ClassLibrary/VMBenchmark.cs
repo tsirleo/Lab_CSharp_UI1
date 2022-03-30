@@ -71,7 +71,7 @@ namespace ClassLibrary
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                throw new Exception("Error in AddVMTime(VMGrid grid)", ex);
             }
         }
 
@@ -116,7 +116,7 @@ namespace ClassLibrary
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                throw new Exception("Error in AddVMTime(VMGrid grid)", ex);
             }
         }
 
